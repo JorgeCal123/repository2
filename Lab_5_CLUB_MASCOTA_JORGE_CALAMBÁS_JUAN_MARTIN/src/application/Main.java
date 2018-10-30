@@ -2,12 +2,17 @@ package application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
+import modelo.Club;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	
+	private Club club;
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -23,5 +28,13 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public void iniciarClub() {
+		club=new Club();
+	}
+	
+	public Club darClub() {
+		return club;
 	}
 }
