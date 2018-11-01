@@ -5,7 +5,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -20,7 +19,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControlInterfaz">
    <children>
-      <TabPane prefHeight="283.0" prefWidth="611.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="principal" prefHeight="283.0" prefWidth="611.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Dueño">
                <content>
@@ -42,22 +41,22 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <TextField GridPane.columnIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="cedulaDueno" GridPane.columnIndex="1" />
+                                          <TextField fx:id="nombreDueno" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="apellidoDueno" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <Label text="Cédula:" />
                                           <Label text="Nombre:" GridPane.rowIndex="1" />
                                           <Label text="Apellido:" GridPane.rowIndex="2" />
                                           <Label text="Fecha de Nacimiento:" GridPane.rowIndex="3" />
-                                          <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <DatePicker fx:id="fechaNDueno" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                     <HBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="204.0" prefHeight="39.0" prefWidth="284.0" spacing="10.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Registrar" />
-                                          <Button mnemonicParsing="false" text="Eliminar" />
-                                          <Button mnemonicParsing="false" text="Buscar" />
-                                          <Button mnemonicParsing="false" text="Modificar" />
+                                          <Button mnemonicParsing="false" onAction="#registrarDuenos" text="Registrar" />
+                                          <Button mnemonicParsing="false" onAction="#imprimir" text="Eliminar" />
+                                          <Button mnemonicParsing="false" onAction="#buscarDuenos" text="Buscar" />
+                                          <Button mnemonicParsing="false" onAction="#modificarDueno" text="Modificar" />
                                        </children>
                                        <opaqueInsets>
                                           <Insets />
@@ -85,18 +84,8 @@
                                           <TextField fx:id="nombreMascota" GridPane.columnIndex="1" />
                                           <Label text="Genero:" GridPane.rowIndex="2" />
                                           <Label text="Fecha de Nacimiento:" GridPane.rowIndex="1" />
-                                          <MenuButton fx:id="generoMascota" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                <MenuItem mnemonicParsing="false" text="Action 2" />
-                                             </items>
-                                          </MenuButton>
-                                          <MenuButton fx:id="tipoMascota" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                <MenuItem mnemonicParsing="false" text="Action 2" />
-                                             </items>
-                                          </MenuButton>
+                                          <MenuButton fx:id="generoMascota" mnemonicParsing="false" onAction="#MenuGeneroMascota" prefHeight="25.0" prefWidth="137.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <MenuButton fx:id="tipoMascota" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           <Label text="Nombre:" />
                                           <Label text="Tipo:" GridPane.rowIndex="3" />
                                           <DatePicker fx:id="fechaNMascota" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -104,9 +93,9 @@
                                     </GridPane>
                                     <HBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="204.0" prefHeight="39.0" prefWidth="291.0" spacing="10.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Registrar" />
+                                          <Button mnemonicParsing="false" onAction="#registrarMascota" text="Registrar" />
                                           <Button mnemonicParsing="false" text="Eliminar" />
-                                          <Button mnemonicParsing="false" text="Buscar" />
+                                          <Button mnemonicParsing="false" onAction="#buscarMascota" text="Buscar" />
                                           <Button mnemonicParsing="false" text="Modificar" />
                                        </children>
                                        <opaqueInsets>
@@ -130,7 +119,7 @@
                            <children>
                               <Label text="Label" />
                               <DatePicker fx:id="fecha" />
-                              <Button mnemonicParsing="false" text="Dueños" />
+                              <Button mnemonicParsing="false" onAction="#imprimir3" text="Dueños" />
                               <Button mnemonicParsing="false" text="Mascotas" />
                               <Button mnemonicParsing="false" text="Rep. Dueños" />
                               <Button mnemonicParsing="false" text="Button" />

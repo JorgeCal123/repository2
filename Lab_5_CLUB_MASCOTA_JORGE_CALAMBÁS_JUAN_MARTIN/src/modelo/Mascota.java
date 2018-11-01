@@ -9,15 +9,15 @@ public class Mascota {
 	private String nombre;
 	private String fechaNacimiento;
 	private int genero;
-	private String tipo;
+	private int tipo;
 	
-	public final int MASCULINO = 1;
-	public final int FEMENINO = 2;
+	public final int MACHO = 1;
+	public final int HEMBRA = 2;
 	
 	public final int PERRO = 1;
 	public final int GATO = 2;
 	
-	public Mascota(String nombre, String fechaNacimiento, int genero, String tipo) {
+	public Mascota(String nombre, String fechaNacimiento, int genero, int tipo) {
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 		this.genero = genero;
@@ -48,11 +48,11 @@ public class Mascota {
 		this.genero = genero;
 	}
 
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 

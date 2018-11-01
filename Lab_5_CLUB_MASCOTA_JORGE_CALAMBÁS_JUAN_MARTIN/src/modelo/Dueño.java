@@ -1,5 +1,7 @@
 package modelo;
 
+import Excepsiones.MascotaNoEncontrado;
+
 public class Dueño {
 
 	private Dueño siguiente;
@@ -12,6 +14,7 @@ public class Dueño {
 	private String apellido;
 	private String fechaNacimiento;
 	private Mascota primeraMascota;
+	
 	
 	
 	public Dueño(String cedula, String nombre, String apellido, String fechaNacimiento) {
@@ -98,21 +101,28 @@ public class Dueño {
 		}
 	}
 	
-	public Mascota buscarMascota(String b) {
+	public Mascota buscarMascota(String b) throws MascotaNoEncontrado{
 		Mascota actual = primeraMascota;
 		Mascota esta = null;
 		boolean encontrada = false;
-		if(actual != null) {
-			while(!encontrada && actual.getSiguiente() != null) {
+			while(!encontrada &&actual!=null) {
 				if(actual.getNombre().equalsIgnoreCase(b) || actual.getFechaNacimiento().equalsIgnoreCase(b)) {
 					encontrada = true;
 					esta = actual;
 				}
+				else {
 				actual = actual.getSiguiente();
+				}
 			}
+		
+		if(esta==null) {
+			throw new MascotaNoEncontrado();
 		}
 		return esta;
 	}
+	
+	
+	
 	
 }
 
