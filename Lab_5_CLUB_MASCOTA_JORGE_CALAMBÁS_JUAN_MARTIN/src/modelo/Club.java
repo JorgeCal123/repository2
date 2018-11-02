@@ -20,7 +20,6 @@ public class Club {
 			while(actual.getSiguiente() != null) {
 
 				if(!actual.getCedula().equalsIgnoreCase(nuevo.getCedula())) {
-					System.out.println("entra 2");
 					actual = actual.getSiguiente();
 				} 
 				else {
@@ -60,24 +59,45 @@ public class Club {
  	
  	
  	
- 	public String imprimirDuenio(String f) {
-		Dueño actual = primerDueño;
-		String mensaje="";
+ 	public String imprimirDuenio() {
+ 		Dueño actual = primerDueño;
 		boolean terminar=false;
-		while(!terminar) {
+ 		String mensaje="";
+ 		while(!terminar) {
 			if(actual!=null) {	
-				if(actual.getFechaNacimiento().equals(f)) {
-					mensaje+="El dueño "+actual.getNombre()+" nacio el "+f+"\n";
+					mensaje+="*El dueño "+actual.getNombre()+" nacio el "+actual.getFechaNacimiento()+" con cedula "+actual.getCedula()+"\n";
 					actual = actual.getSiguiente();
-				}
 			}
 			else {
 				terminar=true;
 			}
+	
 		}
-			return mensaje;
-
-	}
+ 		return mensaje;
+ 	}
+ 	
+		
+ 	
+ 	public String imprimirDuenio(String f) {
+ 		Dueño actual = primerDueño;
+		boolean terminar=false;
+ 		String mensaje="";
+ 		
+ 		while(!terminar) {
+ 	 		
+ 	 		if(actual.getSiguiente()==null) {
+				terminar=true;
+			}
+					if(actual.getFechaNacimiento().equals(f)) {
+						mensaje+="*El dueño "+actual.getNombre()+" nacio el "+f+"\n";
+					}
+					actual = actual.getSiguiente();
+		}
+ 		return mensaje;
+ 	}
+ 	
+ 	
+ 	
  	public void imprimir() {
  		Dueño sig=primerDueño;
 			System.out.println(sig.getNombre()+" "+sig.getApellido()+" "+sig.getCedula()+" "+sig.getFechaNacimiento());
@@ -98,10 +118,14 @@ public class Club {
  	
 	public void imprimir3() throws DueñoExistente, MascotaNoEncontrado {
  		Dueño d1=new Dueño("1", "jorge", "c", "12-1");
- 		Dueño d2=new Dueño("2", "ana", "b", "12-1");
- 		
+ 		Dueño d2=new Dueño("2", "ana", "b", "12-4");
+ 		Dueño d3=new Dueño("3", "pedro", "b", "12-1");
+ 		Dueño d4=new Dueño("4", "juan", "b", "12-1");
+
  		agregarDuenio(d1);
  		agregarDuenio(d2);
+ 		agregarDuenio(d3);
+ 		agregarDuenio(d4);
  		
  		Mascota m1=new Mascota("lulu", "18_jul", 1, 1);
  		Mascota m2=new Mascota("jerry", "20_jul", 2, 2);
@@ -112,6 +136,7 @@ public class Club {
  		d1.agregarMascotaAlFinal(m2);
  		d1.agregarMascotaAlFinal(m3);
  		d1.agregarMascotaAlFinal(m4);
+ 	//	System.out.println(imprimirDuenio());
 
  		System.out.println(imprimirDuenio("12-1"));
  		

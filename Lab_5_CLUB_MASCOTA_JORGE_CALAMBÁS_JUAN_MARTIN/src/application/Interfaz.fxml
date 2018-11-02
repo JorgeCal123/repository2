@@ -119,8 +119,8 @@
                            <children>
                               <Label text="Label" />
                               <DatePicker fx:id="fecha" />
-                              <Button mnemonicParsing="false" onAction="#imprimir3" text="Dueños" />
-                              <Button mnemonicParsing="false" text="Mascotas" />
+                              <Button mnemonicParsing="false" onAction="#mostrarListaDuenos" text="Dueños" />
+                              <Button mnemonicParsing="false" onAction="#imprimir3" text="Mascotas" />
                               <Button mnemonicParsing="false" text="Rep. Dueños" />
                               <Button mnemonicParsing="false" text="Button" />
                            </children>

@@ -351,7 +351,7 @@ public void modificarMascota() {
 			
 		}
 	
-	public void mostrarListaDuenos2() {
+	public void mostrarListaDuenos() {
 		try {
 			System.out.println("ingresa 1");
 			if(!fecha.getValue().toString().equals("")) {
