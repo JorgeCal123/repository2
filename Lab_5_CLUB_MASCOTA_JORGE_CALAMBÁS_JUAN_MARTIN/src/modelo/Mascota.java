@@ -11,8 +11,8 @@ public class Mascota {
 	private int genero;
 	private int tipo;
 	
-	public final int MACHO = 1;
-	public final int HEMBRA = 2;
+	public final static int MACHO = 1;
+	public final static int HEMBRA = 2;
 	
 	public final int PERRO = 1;
 	public final int GATO = 2;

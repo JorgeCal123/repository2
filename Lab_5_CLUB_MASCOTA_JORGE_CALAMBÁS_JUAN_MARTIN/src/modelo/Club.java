@@ -117,10 +117,67 @@ public class Club {
  		return mensaje;
  	}
  	
- 	
+ 	public String imprimirTodasMascota() {
+ 		String mensaje="";
+ 		Dueño actual = primerDueño;
+		boolean terminar=false;
+		while(!terminar) {
+			if(actual!=null) {	
+					mensaje+="*El dueño "+actual.getNombre()+" tiene a "+actual.imprimirMascotas()+"\n";
+					actual = actual.getSiguiente();
+			}
+			else {
+				terminar=true;
+			}
+		}
+ 		return mensaje;
+ 		
+ 	}
  
+ 	public String imprimirTodasMascota(String f) {
+ 		Dueño actual = primerDueño;
+		boolean terminar=false;
+ 		String mensaje="";
+ 		
+ 		while(!terminar) {
+ 	 		
+ 	 		if(actual.getSiguiente()==null) {
+				terminar=true;
+			}
+ 	 		else {
+ 	 			if(actual.getPrimeraMascota().getFechaNacimiento().equals(f)) {
+				mensaje+="*El dueño "+actual.getNombre()+" tiene a "+actual.imprimirMascotas(f)+"\n";
+ 	 			}
+ 	 		}
+					
+					actual = actual.getSiguiente();
+		}
+ 		return mensaje;
+ 	}
  	
  	
+ 	
+	public String imprimirMascotaMismoGenero(String f) {
+		
+		Dueño actual = primerDueño;
+		boolean terminar=false;
+ 		String mensaje="";
+ 		
+ 		while(!terminar) {
+ 	 		
+ 	 		if(actual.getSiguiente()==null) {
+				terminar=true;
+			}
+ 	 		else {
+ 	 			if(actual.getPrimeraMascota().getFechaNacimiento().equals(f)) {
+				mensaje+="*El dueño "+actual.getNombre()+" tiene a "+actual.imprimirMascotasmismoGenero(f)+"\n";
+ 	 			}
+ 	 		}
+					
+					actual = actual.getSiguiente();
+		}
+ 		return mensaje;
+	}
  	public void imprimir() {
  		Dueño sig=primerDueño;
 			System.out.println(sig.getNombre()+" "+sig.getApellido()+" "+sig.getCedula()+" "+sig.getFechaNacimiento());
@@ -150,19 +207,28 @@ public class Club {
  		agregarDuenio(d3);
  		agregarDuenio(d4);
  		
- 		Mascota m1=new Mascota("lulu", "18_jul", 1, 1);
- 		Mascota m2=new Mascota("jerry", "20_jul", 2, 2);
- 		Mascota m3=new Mascota("matias", "150_jul", 2, 2);
- 		Mascota m4=new Mascota("kar", "25_jul", 2, 2);
+ 		Mascota m1=new Mascota("lulu", "22_jul", 1, 1);
+ 		Mascota m2=new Mascota("jerry", "20_jul", 1, 2);
+ 		Mascota m3=new Mascota("matias", "26_jul", 2, 2);
+ 		Mascota m4=new Mascota("kar", "22_jul", 1, 2);
+ 		Mascota m5=new Mascota("kar 1", "25_jul", 1, 2);
+ 		Mascota m6=new Mascota("kar 2", "26_jul", 2, 2);
+ 		Mascota m7=new Mascota("kar 4", "22_jul", 1, 2);
 
  		d1.agregarMascotaAlFinal(m1);
  		d1.agregarMascotaAlFinal(m2);
  		d1.agregarMascotaAlFinal(m3);
  		d1.agregarMascotaAlFinal(m4);
+ 		d2.agregarMascotaAlFinal(m5);
+ 		d2.agregarMascotaAlFinal(m6);
+ 		d3.agregarMascotaAlFinal(m7);
+
  	//	System.out.println(imprimirDuenio());
 
- 		System.out.println(imprimirDuenio("12-1"));
+ 		System.out.println(imprimirMascotaMismoGenero("22_jul"));
  		
  		
  	}
+
+
 }

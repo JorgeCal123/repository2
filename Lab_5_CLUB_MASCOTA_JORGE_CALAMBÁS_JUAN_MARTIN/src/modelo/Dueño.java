@@ -7,7 +7,6 @@ public class Dueño {
 	private Dueño siguiente;
 	private Dueño anterior;
 	
-	private Mascota primerMascota;
 	
 	private String cedula;
 	private String nombre;
@@ -137,6 +136,76 @@ public class Dueño {
 		}
 	}
 	
+	public String imprimirMascotas() {
+ 		Mascota actual = primeraMascota;
+		boolean terminar=false;
+ 		String mensaje="";
+ 		while(!terminar) {
+			if(actual!=null) {	
+				
+					mensaje+=actual.getNombre()+" ";
+					actual = actual.getSiguiente();
+			}
+			else {
+				terminar=true;
+			}
+	
+		}
+ 		return mensaje;
+ 	}
+	
+	public String imprimirMascotas(String f) {
+		Mascota actual = primeraMascota;
+		boolean terminar=false;
+ 		String mensaje="";
+ 		
+ 		while(!terminar) {
+ 	 		
+ 	 		if(actual.getSiguiente()==null) {
+				terminar=true;
+			}
+					if(actual.getFechaNacimiento().equals(f)) {
+						mensaje+=actual.getNombre()+" ";
+					}
+					actual = actual.getSiguiente();
+		}
+ 		return mensaje;
+ 	}
+
+	public String imprimirMascotasmismoGenero(String f) {
+		Mascota actual = primeraMascota;
+		boolean terminar=false;
+		int contador=0;
+		int contador2=0;
+ 		String mensaje="";
+ 		
+ 		while(!terminar) {
+ 	 		
+ 	 		if(actual.getSiguiente()==null) {
+				terminar=true;
+			}
+					if(actual.getFechaNacimiento().equals(f)&&actual.getGenero()==Mascota.HEMBRA) {
+						contador++;
+						if(contador>=2) {
+							mensaje+=actual.getNombre()+" "+actual.getFechaNacimiento()+" "+" Hembra ";
+						}
+						else if(contador==1) {
+							mensaje+=actual.getNombre()+" "+actual.getFechaNacimiento()+" "+" Hembra ";
+							}
+					}
+					if (actual.getFechaNacimiento().equals(f)&&actual.getGenero()==Mascota.MACHO){
+						contador2++;
+						if(contador2>=2) {
+							mensaje+=actual.getNombre()+" "+actual.getFechaNacimiento()+" "+" Macho ";
+						}
+						else if(contador2==1) {
+							mensaje+=actual.getNombre()+" "+actual.getFechaNacimiento()+" "+" Macho ";
+							}
+					}
+					actual = actual.getSiguiente();
+		}
+ 		return mensaje;
+	}
 	
 }
 

@@ -120,9 +120,9 @@
                               <Label text="Label" />
                               <DatePicker fx:id="fecha" />
                               <Button mnemonicParsing="false" onAction="#mostrarListaDuenos" text="Dueños" />
-                              <Button mnemonicParsing="false" onAction="#imprimir3" text="Mascotas" />
+                              <Button mnemonicParsing="false" onAction="#mostrarListaMascota" text="Mascotas" />
                               <Button mnemonicParsing="false" text="Rep. Dueños" />
-                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" onAction="#mostrarMascotaRepetida" text="Rep. Mascotas" />
                            </children>
                         </HBox>
                         <TextArea fx:id="infLista" layoutY="44.0" prefHeight="203.0" prefWidth="611.0" promptText="Informacion de la Lista:" />

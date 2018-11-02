@@ -352,33 +352,48 @@ public void modificarMascota() {
 		}
 	
 	public void mostrarListaDuenos() {
-		try {
-			System.out.println("ingresa 1");
-			if(!fecha.getValue().toString().equals("")) {
-		infLista.setText(m.darClub().imprimirDuenio(fecha.getValue().toString()));
+	
+			if(fecha.getValue()==null) {
+				infLista.setText(m.darClub().imprimirDuenio());
 		}
 			else {
-				throw new FechaNoEscrita();
+				infLista.setText(m.darClub().imprimirDuenio(fecha.getValue().toString()));
+
 			}
-		}
 		
-		catch(FechaNoEscrita e) {
-			mensajeErrorDeDatos(e.getMessage());
-		}
+		
+		
 	}
 	
-		public void imprimir() {
-			m.darClub().imprimir();
-			
-		//	System.out.println("encontrado 1 "+m.darClub().buscarDuenio("1").getNombre());
+	
+	public void mostrarListaMascota() {	
+			if(fecha.getValue()==null) {
+				infLista.setText(m.darClub().imprimirTodasMascota());
 		}
-		
-		
-		public void imprimir2() {
-			m.darClub().imprimir2();
-			
-		//	System.out.println("encontrado 1 "+m.darClub().buscarDuenio("1").getNombre());
+			else {
+				infLista.setText(m.darClub().imprimirTodasMascota(fecha.getValue().toString()));
+			}
+	}
+	
+	public void mostrarMascotaRepetida() {
+		try {
+		if(fecha.getValue()==null) {
+			infLista.setText("ingrese una fecha");
+
 		}
+		else {
+			System.out.println("entra 1");
+			infLista.setText(m.darClub().imprimirMascotaMismoGenero(fecha.getValue().toString()));
+		}
+		}
+		catch(Exception e) {
+			mensajeErrorDeDatos("No hay nadie registrado");
+		}
+	}
+	public void imprimir() {
+		
+	}
+	
 		public void imprimir3() throws DueñoExistente, MascotaNoEncontrado {
 			m.darClub().imprimir3();
 			
