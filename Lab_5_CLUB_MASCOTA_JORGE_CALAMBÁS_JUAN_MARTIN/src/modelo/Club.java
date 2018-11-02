@@ -10,7 +10,7 @@ public class Club {
 	private Dueño primerDueño;
 
  	public Club() {
- 		primerDueño=null;
+ 		
  	}
 
  	public void agregarDuenio(Dueño nuevo) throws DueñoExistente{
@@ -57,9 +57,30 @@ public class Club {
 		return esta;
 	}
  	
+ 	public void eliminarDuenio(String cedula) {
+		Dueño actual = primerDueño;
+		boolean encontrada = false;
+		if(actual != null) {
+			while(!encontrada && actual.getSiguiente() != null) {
+				if(actual.getCedula().equalsIgnoreCase(cedula)) {
+					encontrada = true;
+					actual.getAnterior().setSiguiente(actual.getSiguiente().getSiguiente());
+				}
+				actual.setAnterior(actual);
+				actual = actual.getSiguiente();
+			}
+		}
+	}
  	
- 	
- 	public String imprimirDuenio() {
+ 	public Dueño getPrimerDueño() {
+		return primerDueño;
+	}
+
+	public void setPrimerDueño(Dueño primerDueño) {
+		this.primerDueño = primerDueño;
+	}
+
+	public String imprimirDuenio() {
  		Dueño actual = primerDueño;
 		boolean terminar=false;
  		String mensaje="";

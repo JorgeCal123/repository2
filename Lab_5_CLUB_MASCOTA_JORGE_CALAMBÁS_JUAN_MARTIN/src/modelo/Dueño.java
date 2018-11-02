@@ -121,7 +121,21 @@ public class Dueño {
 		return esta;
 	}
 	
-	
+	public void eliminarMascota(String nombre) {
+		Mascota actual = primeraMascota;
+		Mascota anterior = null;
+		boolean encontrada = false;
+		if(actual != null) {
+			while(!encontrada && actual.getSiguiente() != null) {
+				if(actual.getNombre().equalsIgnoreCase(nombre)) {
+					encontrada = true;
+					anterior.setSiguiente(anterior.getSiguiente().getSiguiente());
+				}
+				anterior = actual;
+				actual = actual.getSiguiente();
+			}
+		}
+	}
 	
 	
 }
