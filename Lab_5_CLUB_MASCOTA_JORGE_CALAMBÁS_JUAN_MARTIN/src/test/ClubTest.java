@@ -50,6 +50,20 @@ class ClubTest {
 	}
 	
 	@Test
+	void testAgregarDuenioFallo() {
+		try {
+			setUp();
+			e = null;
+			cm.agregarDuenio(e);
+			assertFalse(cm.getPrimerDueño() != null);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
 	void testBuscarDuenio() {
 		try {
 			setUp2();
@@ -58,6 +72,8 @@ class ClubTest {
 			// TODO: handle exception
 		}
 	}
+	
+	
 	
 	@Test
 	void eliminarDuenio() {

@@ -5,64 +5,60 @@ import Excepsiones.DueñoNoEncontrado;
 import Excepsiones.MascotaNoEncontrado;
 
 public class Club {
-	
 
 	private Dueño primerDueño;
 
- 	public Club() {
- 		
- 	}
+	public Club() {
 
- 	public void agregarDuenio(Dueño nuevo) throws DueñoExistente{
+	}
+
+	public void agregarDuenio(Dueño nuevo) throws DueñoExistente {
 		Dueño actual = primerDueño;
 		boolean condicion = false;
-		if(primerDueño != null) {
-			while(actual.getSiguiente() != null) {
+		if (nuevo != null) {
+			if (primerDueño != null) {
+				while (actual.getSiguiente() != null) {
 
-				if(!actual.getCedula().equalsIgnoreCase(nuevo.getCedula())) {
-					actual = actual.getSiguiente();
-				} 
-				else {
-					condicion = true;
-					throw new DueñoExistente();
+					if (!actual.getCedula().equalsIgnoreCase(nuevo.getCedula())) {
+						actual = actual.getSiguiente();
+					} else {
+						condicion = true;
+						throw new DueñoExistente();
+					}
 				}
+				if (!condicion) {
+					actual.setSiguiente(nuevo);
+				}
+			} else {
+				primerDueño = nuevo;
 			}
-			if(!condicion) {
-				actual.setSiguiente(nuevo);
-			} 
-		} else {
-			primerDueño = nuevo;
 		}
-		
 	}
-	
-	
- 	
- 	
- 	public Dueño buscarDuenio(String b) throws DueñoNoEncontrado{
+
+	public Dueño buscarDuenio(String b) throws DueñoNoEncontrado {
 		Dueño actual = primerDueño;
 		Dueño esta = null;
 		boolean encontrada = false;
-			while(!encontrada && actual != null) {
-				if(actual.getNombre().equalsIgnoreCase(b) || actual.getCedula().equalsIgnoreCase(b)) {
-					encontrada = true;
-					esta = actual;
-				}
-				actual = actual.getSiguiente();
+		while (!encontrada && actual != null) {
+			if (actual.getNombre().equalsIgnoreCase(b) || actual.getCedula().equalsIgnoreCase(b)) {
+				encontrada = true;
+				esta = actual;
 			}
-			if(esta==null) {
-				throw new DueñoNoEncontrado();
-			}
-		
+			actual = actual.getSiguiente();
+		}
+		if (esta == null) {
+			throw new DueñoNoEncontrado();
+		}
+
 		return esta;
 	}
- 	
- 	public void eliminarDuenio(String cedula) {
+
+	public void eliminarDuenio(String cedula) {
 		Dueño actual = primerDueño;
 		boolean encontrada = false;
-		if(actual != null) {
-			while(!encontrada && actual.getSiguiente() != null) {
-				if(actual.getCedula().equalsIgnoreCase(cedula)) {
+		if (actual != null) {
+			while (!encontrada && actual.getSiguiente() != null) {
+				if (actual.getCedula().equalsIgnoreCase(cedula)) {
 					encontrada = true;
 					actual.getAnterior().setSiguiente(actual.getSiguiente().getSiguiente());
 				}
@@ -71,8 +67,8 @@ public class Club {
 			}
 		}
 	}
- 	
- 	public Dueño getPrimerDueño() {
+
+	public Dueño getPrimerDueño() {
 		return primerDueño;
 	}
 
@@ -81,154 +77,149 @@ public class Club {
 	}
 
 	public String imprimirDuenio() {
- 		Dueño actual = primerDueño;
-		boolean terminar=false;
- 		String mensaje="";
- 		while(!terminar) {
-			if(actual!=null) {	
-					mensaje+="*El dueño "+actual.getNombre()+" nacio el "+actual.getFechaNacimiento()+" con cedula "+actual.getCedula()+"\n";
-					actual = actual.getSiguiente();
-			}
-			else {
-				terminar=true;
-			}
-	
-		}
- 		return mensaje;
- 	}
- 	
-		
- 	
- 	public String imprimirDuenio(String f) {
- 		Dueño actual = primerDueño;
-		boolean terminar=false;
- 		String mensaje="";
- 		
- 		while(!terminar) {
- 	 		
- 	 		if(actual.getSiguiente()==null) {
-				terminar=true;
-			}
-					if(actual.getFechaNacimiento().equals(f)) {
-						mensaje+="*El dueño "+actual.getNombre()+" nacio el "+f+"\n";
-					}
-					actual = actual.getSiguiente();
-		}
- 		return mensaje;
- 	}
- 	
- 	public String imprimirTodasMascota() {
- 		String mensaje="";
- 		Dueño actual = primerDueño;
-		boolean terminar=false;
-		while(!terminar) {
-			if(actual!=null) {	
-					mensaje+="*El dueño "+actual.getNombre()+" tiene a "+actual.imprimirMascotas()+"\n";
-					actual = actual.getSiguiente();
-			}
-			else {
-				terminar=true;
-			}
-		}
- 		return mensaje;
- 		
- 	}
- 
- 	public String imprimirTodasMascota(String f) {
- 		Dueño actual = primerDueño;
-		boolean terminar=false;
- 		String mensaje="";
- 		
- 		while(!terminar) {
- 	 		
- 	 		if(actual.getSiguiente()==null) {
-				terminar=true;
-			}
- 	 		else {
- 	 			if(actual.getPrimeraMascota().getFechaNacimiento().equals(f)) {
-				mensaje+="*El dueño "+actual.getNombre()+" tiene a "+actual.imprimirMascotas(f)+"\n";
- 	 			}
- 	 		}
-					
-					actual = actual.getSiguiente();
-		}
- 		return mensaje;
- 	}
- 	
- 	
- 	
-	public String imprimirMascotaMismoGenero(String f) {
-		
 		Dueño actual = primerDueño;
-		boolean terminar=false;
- 		String mensaje="";
- 		
- 		while(!terminar) {
- 	 		
- 	 		if(actual.getSiguiente()==null) {
-				terminar=true;
+		boolean terminar = false;
+		String mensaje = "";
+		while (!terminar) {
+			if (actual != null) {
+				mensaje += "*El dueño " + actual.getNombre() + " nacio el " + actual.getFechaNacimiento()
+						+ " con cedula " + actual.getCedula() + "\n";
+				actual = actual.getSiguiente();
+			} else {
+				terminar = true;
 			}
- 	 		else {
- 	 			if(actual.getPrimeraMascota().getFechaNacimiento().equals(f)) {
-				mensaje+="*El dueño "+actual.getNombre()+" tiene a "+actual.imprimirMascotasmismoGenero(f)+"\n";
- 	 			}
- 	 		}
-					
-					actual = actual.getSiguiente();
+
 		}
- 		return mensaje;
+		return mensaje;
 	}
- 	public void imprimir() {
- 		Dueño sig=primerDueño;
-			System.out.println(sig.getNombre()+" "+sig.getApellido()+" "+sig.getCedula()+" "+sig.getFechaNacimiento());
- 		while(sig.getSiguiente()!=null) {
- 			sig=sig.getSiguiente();
 
- 			System.out.println(sig.getNombre()+" "+sig.getApellido()+" "+sig.getCedula()+" "+sig.getFechaNacimiento());
- 		}
- 	}
- 	
- 	public void imprimir2() {
- 		Dueño d1=new Dueño("1", "j", "c", "12-1");
- 		Dueño d2=new Dueño("2", "a", "b", "12-1");
- 		
- 	//	agregarDuenio(d1);
- 	//	agregarDuenio(d2);
- 	}
- 	
+	public String imprimirDuenio(String f) {
+		Dueño actual = primerDueño;
+		boolean terminar = false;
+		String mensaje = "";
+
+		while (!terminar) {
+
+			if (actual.getSiguiente() == null) {
+				terminar = true;
+			}
+			if (actual.getFechaNacimiento().equals(f)) {
+				mensaje += "*El dueño " + actual.getNombre() + " nacio el " + f + "\n";
+			}
+			actual = actual.getSiguiente();
+		}
+		return mensaje;
+	}
+
+	public String imprimirTodasMascota() {
+		String mensaje = "";
+		Dueño actual = primerDueño;
+		boolean terminar = false;
+		while (!terminar) {
+			if (actual != null) {
+				mensaje += "*El dueño " + actual.getNombre() + " tiene a " + actual.imprimirMascotas() + "\n";
+				actual = actual.getSiguiente();
+			} else {
+				terminar = true;
+			}
+		}
+		return mensaje;
+
+	}
+
+	public String imprimirTodasMascota(String f) {
+		Dueño actual = primerDueño;
+		boolean terminar = false;
+		String mensaje = "";
+
+		while (!terminar) {
+
+			if (actual.getSiguiente() == null) {
+				terminar = true;
+			} else {
+				if (actual.getPrimeraMascota().getFechaNacimiento().equals(f)) {
+					mensaje += "*El dueño " + actual.getNombre() + " tiene a " + actual.imprimirMascotas(f) + "\n";
+				}
+			}
+
+			actual = actual.getSiguiente();
+		}
+		return mensaje;
+	}
+
+	public String imprimirMascotaMismoGenero(String f) {
+
+		Dueño actual = primerDueño;
+		boolean terminar = false;
+		String mensaje = "";
+
+		while (!terminar) {
+
+			if (actual.getSiguiente() == null) {
+				terminar = true;
+			} else {
+				if (actual.getPrimeraMascota().getFechaNacimiento().equals(f)) {
+					mensaje += "*El dueño " + actual.getNombre() + " tiene a " + actual.imprimirMascotasmismoGenero(f)
+							+ "\n";
+				}
+			}
+
+			actual = actual.getSiguiente();
+		}
+		return mensaje;
+	}
+
+	public void imprimir() {
+		Dueño sig = primerDueño;
+		System.out.println(
+				sig.getNombre() + " " + sig.getApellido() + " " + sig.getCedula() + " " + sig.getFechaNacimiento());
+		while (sig.getSiguiente() != null) {
+			sig = sig.getSiguiente();
+
+			System.out.println(
+					sig.getNombre() + " " + sig.getApellido() + " " + sig.getCedula() + " " + sig.getFechaNacimiento());
+		}
+	}
+
+	public void imprimir2() {
+		Dueño d1 = new Dueño("1", "j", "c", "12-1");
+		Dueño d2 = new Dueño("2", "a", "b", "12-1");
+
+		// agregarDuenio(d1);
+		// agregarDuenio(d2);
+	}
+
 	public void imprimir3() throws DueñoExistente, MascotaNoEncontrado {
- 		Dueño d1=new Dueño("1", "jorge", "c", "12-1");
- 		Dueño d2=new Dueño("2", "ana", "b", "12-4");
- 		Dueño d3=new Dueño("3", "pedro", "b", "12-1");
- 		Dueño d4=new Dueño("4", "juan", "b", "12-1");
+		Dueño d1 = new Dueño("1", "jorge", "c", "12-1");
+		Dueño d2 = new Dueño("2", "ana", "b", "12-4");
+		Dueño d3 = new Dueño("3", "pedro", "b", "12-1");
+		Dueño d4 = new Dueño("4", "juan", "b", "12-1");
 
- 		agregarDuenio(d1);
- 		agregarDuenio(d2);
- 		agregarDuenio(d3);
- 		agregarDuenio(d4);
- 		
- 		Mascota m1=new Mascota("lulu", "22_jul", 1, 1);
- 		Mascota m2=new Mascota("jerry", "20_jul", 1, 2);
- 		Mascota m3=new Mascota("matias", "26_jul", 2, 2);
- 		Mascota m4=new Mascota("kar", "22_jul", 1, 2);
- 		Mascota m5=new Mascota("kar 1", "25_jul", 1, 2);
- 		Mascota m6=new Mascota("kar 2", "26_jul", 2, 2);
- 		Mascota m7=new Mascota("kar 4", "22_jul", 1, 2);
+		agregarDuenio(d1);
+		agregarDuenio(d2);
+		agregarDuenio(d3);
+		agregarDuenio(d4);
 
- 		d1.agregarMascotaAlFinal(m1);
- 		d1.agregarMascotaAlFinal(m2);
- 		d1.agregarMascotaAlFinal(m3);
- 		d1.agregarMascotaAlFinal(m4);
- 		d2.agregarMascotaAlFinal(m5);
- 		d2.agregarMascotaAlFinal(m6);
- 		d3.agregarMascotaAlFinal(m7);
+		Mascota m1 = new Mascota("lulu", "22_jul", 1, 1);
+		Mascota m2 = new Mascota("jerry", "20_jul", 1, 2);
+		Mascota m3 = new Mascota("matias", "26_jul", 2, 2);
+		Mascota m4 = new Mascota("kar", "22_jul", 1, 2);
+		Mascota m5 = new Mascota("kar 1", "25_jul", 1, 2);
+		Mascota m6 = new Mascota("kar 2", "26_jul", 2, 2);
+		Mascota m7 = new Mascota("kar 4", "22_jul", 1, 2);
 
- 	//	System.out.println(imprimirDuenio());
+		d1.agregarMascotaAlFinal(m1);
+		d1.agregarMascotaAlFinal(m2);
+		d1.agregarMascotaAlFinal(m3);
+		d1.agregarMascotaAlFinal(m4);
+		d2.agregarMascotaAlFinal(m5);
+		d2.agregarMascotaAlFinal(m6);
+		d3.agregarMascotaAlFinal(m7);
 
- 		System.out.println(imprimirMascotaMismoGenero("22_jul"));
- 		
- 		
- 	}
+		// System.out.println(imprimirDuenio());
 
+		System.out.println(imprimirMascotaMismoGenero("22_jul"));
+
+	}
 
 }
